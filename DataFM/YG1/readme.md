@@ -1,0 +1,1 @@
+Dit Python-script leest YAML-data van netwerkinterfaces en converteert het naar Python dict voor interne verwerking, JSON voor API’s en CSV voor rapportages. Dit is typisch voor infrastructure automation, waarbij we verschillende dataformaten gebruiken afhankelijk van het doel

@@ -1,0 +1,17 @@
+---
+    - name: AUTOMATISCHE BACKUP VAN RUNNING-CONFIG
+      hosts: CSR1kv
+      gather_facts: false
+      connection: local
+      tasks:
+        - name: WEERGAVE VAN DE RUNNING-CONFIG
+          ios_command:
+            commands:
+              - show running-config
+          register: config
+    
+        - name: OPSLAAN VAN OUTPUT IN ./backups/
+          copy:
+            content: "{{ config.stdout[0] }}"
+            dest: "backups/show_run_{{ inventory_hostname }}.txt"
+    

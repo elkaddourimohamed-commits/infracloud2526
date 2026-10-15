@@ -1,0 +1,1 @@
+JS4 gaat over het converteren van JSON-data naar andere formaten zoals YAML en CSV met Python, zodat de data bruikbaar is in automatisatie en configuratie

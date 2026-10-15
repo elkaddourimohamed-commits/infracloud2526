@@ -1,0 +1,58 @@
+---
+  - name: Eigen Nginx experiment
+    hosts: mynginxservers
+    become: yes
+  
+    vars:
+      nginx_port: 8090
+  
+    tasks:
+      - name: Install Nginx
+        apt:
+          name: nginx
+          update_cache: yes
+          state: latest
+  
+      - name: Configure Nginx listen port ipv4
+        replace:
+          path: /etc/nginx/sites-available/default
+          regexp: '^\s*listen\s+80\s+default_server;'
+          replace: '    listen {{ nginx_port }} default_server;'
+        notify: Restart Nginx
+  
+      - name: Configure Nginx listen port ipv6
+        replace:
+          path: /etc/nginx/sites-available/default
+          regexp: '^\s*listen\s+\[::\]:80\s+default_server;'
+          replace: '    listen [::]:{{ nginx_port }} default_server;'
+        notify: Restart Nginx
+  
+      - name: Deploy eigen index.html
+        copy:
+          content: |
+            <!DOCTYPE html>
+            <html>
+            <head><title>Mijn Nginx Server</title></head>
+            <body>
+              <h1>🚀 Mijn Nginx server staat online!</h1>
+              <p>Uitgerold via eigen Ansible playbook.</p>
+            </body>
+            </html>
+          dest: /var/www/html/index.html
+          owner: root
+          group: root
+          mode: "0644"
+  
+      - name: Zorg dat Nginx draait
+        service:
+          name: nginx
+          enabled: yes
+          state: started
+  
+    handlers:
+      - name: Restart Nginx
+        service:
+          name: nginx
+          state: restarted
+  
+  

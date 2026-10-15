@@ -1,0 +1,1 @@
+Met pyang kan ik YANG-bestanden lezen en transformeren naar een tree view, waardoor ik de belangrijkste nodes van een interface kan identificeren zoals name, enabled en admin-status. Dit vereenvoudigt het werken met complexe YANG-modellen en is essentieel voor automation in DEVASC.

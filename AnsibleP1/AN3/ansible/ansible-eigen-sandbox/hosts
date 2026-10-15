@@ -1,0 +1,2 @@
+# Cloud sandbox device
+sandbox ansible_host=devnetsandboxiosxec8k.cisco.com ansible_user=mohamed.elkaddouri3 ansible_password=GxYs08r7-1Ao_W ansible_network_os=ios
